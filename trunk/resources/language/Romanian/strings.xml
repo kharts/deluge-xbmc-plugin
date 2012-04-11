@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<strings>
+	<!-- Labels -->
+	<string id="30001">Finisat:</string>
+	<string id="30002">Marime:</string>
+	<string id="30003">D:</string>
+	<string id="30004">Î:</string>
+	<string id="30005">ETA:</string>
+	<string id="30006">o</string>
+	<string id="30007">m</string>
+	<string id="30008">¡Þm</string>
+	<string id="30009">Fara Eticheta</string>
+	<!-- Settings labels -->
+	<string id="30100">Adresa IP:</string>
+	<string id="30101">Portul:</string>
+	<string id="30102">Utilizator:</string>
+	<string id="30103">Parola:</string>
+	<string id="30104">Cale Torent:</string>
+	<!-- dialog.select -->
+	<string id="32001">Perform function:</string>
+	<string id="32002">Pauza</string>
+	<string id="32003">Reluare</string>
+	<string id="32007">?terge torent</string>
+	<string id="32008">?terge torent ?i date</string>
+	<!-- dialog.numeric -->
+	<string id="32009">Viteza maxima de încarcare:</string>
+	<string id="32010">Viteza maxima de descarcare:</string>
+	<!-- context.menu -->
+	<string id="32011">Pause All</string>
+	<string id="32012">Resume All</string>
+	<string id="32015">Limiteaza viteza de Încarcarea / Descarcare</string>
+	<string id="32016">Adauga fi?ier (din directoriul de torente)</string>
+	<!-- error -->
+	<string id="32100">Eroare!</string>
+	<string id="32101">Nu s-a reu?it sa se conecteze la serviciu.</string>
+	<string id="32102">Dori?i sa schimba?i setarile?</string>
+</strings>
