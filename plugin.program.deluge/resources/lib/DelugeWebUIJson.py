@@ -106,9 +106,26 @@ class DelugeWebUIJson(object):
     
     #TODO: is not working, to find out the params which should be passed
     #{"method":"core.remove_torrent","params":["60d5d82328b4547511fdeac9bf4d0112daa0ce00", false],"id":2}
-    #{"method":"core.remove_torrent","params":[["60d5d82328b4547511fdeac9bf4d0112daa0ce00"],false],"id":2}
     def removeTorrent(self, torrentId, removeData):
         return self.sendReq('core.remove_torrent', [torrentId,removeData], self.getJsonId(), self.cookie)
+    
+    def getLabels(self):
+        jsonRes = self.sendReq('label.get_labels', [], self.getJsonId(), self.cookie)
+        jdata = json.loads(jsonRes)
+        labels = []
+        for label in jdata['result']:
+            labels.append(label)
+        return labels
+    
+    #label.add
+    
+    def labelSetTorrent(self, torrentId, label):
+        return self.sendReq('label.set_torrent', [torrentId, label], self.getJsonId(), self.cookie)
+    
+    def setTorrentOptions(self, torrentId, optionName, optionValue):
+        #return self.sendReq('core.set_torrent_options', [], self.getJsonId(), self.cookie)
+        return self.sendReq('core.set_torrent_options', [[torrentId],{optionName:optionValue}], self.getJsonId(), self.cookie)
+    
     
     #{"method":"label.get_labels","params":[],"id":10}
     #def getLabels(self) :

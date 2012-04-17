@@ -1,37 +1,36 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf8" standalone="yes"?>
 <strings>
 	<!-- Labels -->
 	<string id="30001">Finisat:</string>
-	<string id="30002">Marime:</string>
+	<string id="30002">Mărime:</string>
 	<string id="30003">D:</string>
-	<string id="30004">�:</string>
+	<string id="30004">Î:</string>
 	<string id="30005">ETA:</string>
 	<string id="30006">o</string>
 	<string id="30007">m</string>
-	<string id="30008">��m</string>
-	<string id="30009">Fara Eticheta</string>
+	<string id="30009">Fără Etichetă</string>
 	<!-- Settings labels -->
-	<string id="30100">Adresa IP:</string>
-	<string id="30101">Portul:</string>
-	<string id="30102">Utilizator:</string>
-	<string id="30103">Parola:</string>
-	<string id="30104">Cale Torent:</string>
+	<string id="30100">Adresă IP:</string>
+	<string id="30101">Port:</string>
+	<string id="30103">Parolă:</string>
+	<string id="30104">Cale torent:</string>
 	<!-- dialog.select -->
-	<string id="32001">Perform function:</string>
-	<string id="32002">Pauza</string>
+	<string id="32001">Selectează funcție:</string>
+	<string id="32002">Pauză</string>
 	<string id="32003">Reluare</string>
-	<string id="32007">?terge torent</string>
-	<string id="32008">?terge torent ?i date</string>
+	<string id="32007">Șterge torent</string>
+	<string id="32008">Sterge torent și date</string>
+	<string id="32019">Setează eticheta</string>
+	<!-- dialog.select.label -->
+	<string id="32020">Selecteaza eticheta:</string>
 	<!-- dialog.numeric -->
-	<string id="32009">Viteza maxima de �ncarcare:</string>
-	<string id="32010">Viteza maxima de descarcare:</string>
+	<string id="32009">Viteză maximă de încărcare:</string>
+	<string id="32010">Viteză maximă de descărcare:</string>
 	<!-- context.menu -->
-	<string id="32011">Pause All</string>
-	<string id="32012">Resume All</string>
-	<string id="32015">Limiteaza viteza de �ncarcarea / Descarcare</string>
-	<string id="32016">Adauga fi?ier (din directoriul de torente)</string>
+	<string id="32011">Pauzeazăle pe toate</string>
+	<string id="32012">Reiale pe toate</string>
 	<!-- error -->
 	<string id="32100">Eroare!</string>
-	<string id="32101">Nu s-a reu?it sa se conecteze la serviciu.</string>
-	<string id="32102">Dori?i sa schimba?i setarile?</string>
+	<string id="32101">Nu s-a reușit să se conecteze la serviciu.</string>
+	<string id="32102">Doriți să schimbați setările?</string>
 </strings>

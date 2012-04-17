@@ -48,22 +48,31 @@ def listTorrents(filter):
 				thumb = os.path.join(__icondir__,'unknown.png')
 			url = baseurl
 			xbmc.log( 'url='+url, xbmc.LOGDEBUG )
-			addTorrent(torrentInfo.name+" "+__language__(30001).encode('utf8')+str(torrentInfo.progress)+"% "+__language__(30002).encode('utf8')+torrentInfo.getStrSize()+" "+__language__(30003).encode('utf8')+ str(torrentInfo.downloadPayloadRate)+"Kb/s "+__language__(30004).encode('utf8')+str(torrentInfo.uploadPayloadRate)+"Kb/s "+__language__(30005).encode('utf8')+torrentInfo.getStrEta(),url,mode,thumb,torrentInfo.torrentId)
+			addTorrent(torrentInfo.name+" "+__language__(30001)+str(torrentInfo.progress)+"% "+__language__(30002)+torrentInfo.getStrSize()+" "+__language__(30003)+ str(torrentInfo.downloadPayloadRate)+"Kb/s "+__language__(30004)+str(torrentInfo.uploadPayloadRate)+"Kb/s "+__language__(30005)+torrentInfo.getStrEta(),url,mode,thumb,torrentInfo.torrentId)
 			mode = mode + 1
 	xbmcplugin.endOfDirectory(int(sys.argv[1]),cacheToDisc=False)
 
 def performAction(selection):
-    dialog = xbmcgui.Dialog()
-    sel = dialog.select(__language__(32001),[__language__(32002),__language__(32003),__language__(32007),__language__(32008)])
-    if sel == 0:
-        pause(selection)
-    if sel == 1:
-        resume(selection)
-    if sel == 5:
-        remove(selection, False)
-    if sel == 6:
-        remove(selection, False)
-    xbmc.executebuiltin('Container.Refresh')
+	restoreSession()
+	dialog = xbmcgui.Dialog()
+	sel = dialog.select(__language__(32001),[__language__(32011),__language__(32012),__language__(32002),__language__(32003),__language__(32007),__language__(32008),__language__(32019)])
+	if sel == 0:
+		webUI.pauseAllTorrents()
+	if sel == 1:
+		webUI.resumeAllTorrents()
+	if sel == 2:
+		webUI.pauseTorrent(selection)
+	if sel == 3:
+		webUI.resumeTorrent(selection)
+	if sel == 4:
+		webUI.removeTorrent(selection, True)
+	if sel == 5:
+		webUI.removeTorrent(selection, True)
+	if sel == 6:
+		labels = webUI.getLabels()
+		labelDialog = dialog.select(__language__(32020), labels)
+		webUI.labelSetTorrent(selection, labels[labelDialog])
+	xbmc.executebuiltin('Container.Refresh')
 
 def restoreSession():
 	try:
@@ -80,27 +89,12 @@ def restoreSession():
 	
 def pauseAll():
 	restoreSession()
-	res = webUI.pauseAllTorrents()
+	webUI.pauseAllTorrents()
 	xbmc.executebuiltin('Container.Refresh')
 
 def resumeAll():
 	restoreSession()
 	webUI.resumeAllTorrents()
-	xbmc.executebuiltin('Container.Refresh')
-	
-def remove(torrentId, doRemoveData):
-	restoreSession()
-	webUI.removeTorrent(torrentId, doRemoveData)
-	xbmc.executebuiltin('Container.Refresh')
-	
-def pause(torrentId):
-	restoreSession()
-	webUI.pauseTorrent(torrentId)
-	xbmc.executebuiltin('Container.Refresh')
-	
-def resume(torrentId):
-	restoreSession()
-	webUI.resumeTorrent(torrentId)
 	xbmc.executebuiltin('Container.Refresh')
     
 def get_params():
