@@ -1,1 +1,8 @@
-﻿
+
+[B]Version 0.4.5 (14.04.2012)[/B]
+- Added "Set Label" functionality;
+- Fixed "Remove torrent" functionality;
+- Now PauseAll and ResumeAll actions are present in "Perform Fuction" dialogBox.
+
+[B]Version 0.4.3 (11.04.2012)[/B]
+- Initial Release﻿

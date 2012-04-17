@@ -8,12 +8,10 @@
 	<string id="30005">ETA:</string>
 	<string id="30006">h</string>
 	<string id="30007">m</string>
-	<string id="30008">¡Þm</string>
 	<string id="30009">No Label</string>
 	<!-- Settings labels -->
 	<string id="30100">IP Address:</string>
 	<string id="30101">Port:</string>
-	<string id="30102">User:</string>
 	<string id="30103">Password:</string>
 	<string id="30104">Torrent Path:</string>
 	<!-- dialog.select -->
@@ -21,15 +19,17 @@
 	<string id="32002">Pause</string>
 	<string id="32003">Resume</string>
 	<string id="32007">Remove</string>
-	<string id="32008">Remove and Remove Data</string>
+	<string id="32008">Remove torrent and data</string>
+	<string id="32019">Set Label</string>
+	<!-- dialog.select.label -->
+	<string id="32020">Select label:</string>
+
 	<!-- dialog.numeric -->
 	<string id="32009">Enter Max. Upload Speed:</string>
 	<string id="32010">Enter Max. Download Speed:</string>
 	<!-- context.menu -->
 	<string id="32011">Pause All</string>
 	<string id="32012">Resume All</string>
-	<string id="32015">Limit Upload / Download Speeds</string>
-	<string id="32016">Add Files (from Torrents dir.)</string>
 	<!-- error -->
 	<string id="32100">Error!</string>
 	<string id="32101">Fail to connect to daemon.</string>
