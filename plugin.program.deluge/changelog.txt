@@ -1,3 +1,5 @@
+[B]Version 0.4.6 (20.04.2012)[/B]
+- Added context menu for filter folders with PauseAll and ResumeAll actions.
 
 [B]Version 0.4.5 (14.04.2012)[/B]
 - Added "Set Label" functionality;

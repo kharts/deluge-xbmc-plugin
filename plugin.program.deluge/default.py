@@ -124,7 +124,7 @@ def addTorrent(name,url,mode,iconimage,hashNum):
     ok = True
     point = xbmcgui.ListItem(name,thumbnailImage=iconimage)
     rp = "XBMC.RunPlugin(%s?mode=%s)"
-    point.addContextMenuItems([(__language__(32011), rp % (sys.argv[0], 1000)),(__language__(32012), rp % (sys.argv[0], 1001)),(__language__(32015), rp % (sys.argv[0], 1004)),(__language__(32016), rp % (sys.argv[0], 1005))],replaceItems=True)
+    point.addContextMenuItems([(__language__(32011), rp % (sys.argv[0], 1000)),(__language__(32012), rp % (sys.argv[0], 1001))],replaceItems=True)
     ok = xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=point,isFolder=False)
 	
 def addFilters(filter,url,mode,iconimage):
@@ -136,6 +136,8 @@ def addFilters(filter,url,mode,iconimage):
 	ok=True
 	liz=xbmcgui.ListItem(displayName, iconImage="DefaultFolder.png",thumbnailImage=iconimage)
 	liz.setInfo( type="Video", infoLabels={ "Title": displayName })
+	rp = "XBMC.RunPlugin(%s?mode=%s)"
+	liz.addContextMenuItems([(__language__(32011), rp % (sys.argv[0], 1000)),(__language__(32012), rp % (sys.argv[0], 1001))],replaceItems=True)
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
 
 def listStateFilters():
