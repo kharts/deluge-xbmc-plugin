@@ -106,6 +106,7 @@ class DelugeWebUIJson(object):
     
     #TODO: is not working, to find out the params which should be passed
     #{"method":"core.remove_torrent","params":["60d5d82328b4547511fdeac9bf4d0112daa0ce00", false],"id":2}
+    #{"method":"core.remove_torrent","params":[["60d5d82328b4547511fdeac9bf4d0112daa0ce00"],false],"id":2}
     def removeTorrent(self, torrentId, removeData):
         return self.sendReq('core.remove_torrent', [torrentId,removeData], self.getJsonId(), self.cookie)
     
@@ -122,9 +123,17 @@ class DelugeWebUIJson(object):
     def labelSetTorrent(self, torrentId, label):
         return self.sendReq('label.set_torrent', [torrentId, label], self.getJsonId(), self.cookie)
     
+    #{"method":"web.get_torrent_files","params":["9982b1b5718279562760544e7007b765602a86ee"],"id":392}
+    def getTorrentFiles(self, torrentId):
+        return self.sendReq('web.get_torrent_files', [torrentId], self.getJsonId(), self.cookie)
+
+    #   {"method":"core.set_torrent_options
     def setTorrentOptions(self, torrentId, optionName, optionValue):
         #return self.sendReq('core.set_torrent_options', [], self.getJsonId(), self.cookie)
         return self.sendReq('core.set_torrent_options', [[torrentId],{optionName:optionValue}], self.getJsonId(), self.cookie)
+    
+    #{"method":"web.get_events","params":[],"id":391}
+    #{"method":"web.get_torrent_files","params":["9982b1b5718279562760544e7007b765602a86ee"],"id":392}
     
     
     #{"method":"label.get_labels","params":[],"id":10}
