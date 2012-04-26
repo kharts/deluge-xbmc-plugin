@@ -45,3 +45,6 @@ class TorrentInfo(object):
         else:
             remain_str = '00:' + str(remain)
         return remain_str
+    
+    def __str__(self):
+        return self.name;

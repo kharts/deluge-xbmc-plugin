@@ -7,6 +7,7 @@ Created on Mar 30, 2012
 from DelugeWebUIJson import DelugeWebUIJson
 from TorrentInfo import TorrentInfo
 from Filter import Filter
+from FilterList import FilterList
 import json
 
 class DelugeWebUI(DelugeWebUIJson):
@@ -29,6 +30,35 @@ class DelugeWebUI(DelugeWebUIJson):
             torrentInfo.label = jsonTorrentInfo['label']
             torrentList.append(torrentInfo)
         return torrentList
+    
+    def getTorrentListByLabel(self, labelName):
+        torrentInfoList = self.getTorrentList()
+        resultTorrentInfoList = []
+        for torrentInfo in torrentInfoList:
+            if torrentInfo.label == labelName:
+                resultTorrentInfoList.append(torrentInfo)
+        return resultTorrentInfoList
+    
+    def getTorrentListByState(self, stateName):
+        torrentInfoList = self.getTorrentList()
+        resultTorrentInfoList = []
+        for torrentInfo in torrentInfoList:
+            if torrentInfo.state == stateName:
+                resultTorrentInfoList.append(torrentInfo)
+        return resultTorrentInfoList
+    
+    def getLabelList(self, torrentList):
+        labels = FilterList()
+        for torrent in torrentList:
+            labels.append(Filter(torrent.label, 1))
+        return labels
+    
+    def getStateList(self, torrentList):
+        states = FilterList()
+        for torrent in torrentList:
+            states.append(Filter(torrent.state, 1))
+        return states
+                
 
     def getFilters(self,filterType):
         jsonRes = self.updateUi()

@@ -1,3 +1,6 @@
+[B]Version 0.4.7 (26.04.2012)[/B]
+- Implementation of grouping by state in label folders.
+
 [B]Version 0.4.6 (20.04.2012)[/B]
 - Added context menu for filter folders with PauseAll and ResumeAll actions.
 
@@ -7,4 +10,4 @@
 - Now PauseAll and ResumeAll actions are present in "Perform Fuction" dialogBox.
 
 [B]Version 0.4.3 (11.04.2012)[/B]
-- Initial Release﻿
+- Initial Release
