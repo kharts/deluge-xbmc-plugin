@@ -25,8 +25,8 @@ class DelugeWebUI(DelugeWebUIJson):
             torrentInfo.name = jsonTorrentInfo['name']
             torrentInfo.progress = int(jsonTorrentInfo['progress'])
             torrentInfo.totalSize = int(jsonTorrentInfo['total_size'])
-            torrentInfo.uploadPayloadRate = round(float(jsonTorrentInfo['upload_payload_rate']) / (1024),2)
-            torrentInfo.downloadPayloadRate = round(float(jsonTorrentInfo['download_payload_rate']) / (1024),2)
+            torrentInfo.uploadPayloadRate = round(float(jsonTorrentInfo['upload_payload_rate']) / (1024), 2)
+            torrentInfo.downloadPayloadRate = round(float(jsonTorrentInfo['download_payload_rate']) / (1024), 2)
             torrentInfo.eta = int(jsonTorrentInfo['eta'])
             torrentInfo.label = jsonTorrentInfo['label']
             torrentList.append(torrentInfo)
@@ -56,6 +56,10 @@ class DelugeWebUI(DelugeWebUIJson):
     
     def getStateList(self, torrentList):
         states = FilterList()
+        
+        if len(torrentList) > 0:
+            states.append(Filter('All', len(torrentList)))
+        
         for torrent in torrentList:
             states.append(Filter(torrent.state, 1))
         
@@ -67,7 +71,7 @@ class DelugeWebUI(DelugeWebUIJson):
         if unfinishedCount > 0:
             states.append(Filter('Unfinished', unfinishedCount))
         
-        unstartedCount = torrentList.unfinishedCount()
+        unstartedCount = torrentList.unstartedCount()
         if unstartedCount > 0:
             states.append(Filter('Unstarted', unstartedCount))
         
