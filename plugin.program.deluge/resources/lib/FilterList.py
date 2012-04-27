@@ -4,7 +4,9 @@ Created on Apr 24, 2012
 @author: Iulian Postaru
 '''
 
-class FilterList(list):
+from BaseList import BaseList
+
+class FilterList(BaseList):
     
     def indexByName(self, name):
         for element in self:
