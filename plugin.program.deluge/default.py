@@ -33,7 +33,13 @@ def isTorrentListable(torrentInfo, stateName):
 		return True
 	if stateName == 'All':
 		return True
-	if stateName == 'Active' and (torrentInfo.state == 'Downloading' or torrentInfo.state == 'Seeding'):
+	#if stateName == 'Active' and (torrentInfo.state == 'Downloading' or torrentInfo.state == 'Seeding'):
+	#	return True
+	if stateName == 'Finished' and torrentInfo.process == 100:
+		return True
+	if stateName == 'Unfinished' and torrentInfo.process > 0 and torrentInfo.process > 100 :
+		return True
+	if stateName == 'Unstarted' and torrentInfo.process == 0:
 		return True
 	return False
 

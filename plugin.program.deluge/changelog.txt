@@ -1,3 +1,6 @@
+[B]Version 0.4.8 (27.04.2012)[/B]
+- Improvement of grouping by state in label folders - now are also present Finished, Unfinished and Unstarted states.
+
 [B]Version 0.4.7 (26.04.2012)[/B]
 - Implementation of grouping by state in label folders.
 
@@ -7,7 +10,7 @@
 [B]Version 0.4.5 (14.04.2012)[/B]
 - Added "Set Label" functionality;
 - Fixed "Remove torrent" functionality;
-- Now PauseAll and ResumeAll actions are present in "Perform Fuction" dialogBox.
+- Now PauseAll and ResumeAll actions are present in "Perform Function" dialogBox.
 
 [B]Version 0.4.3 (11.04.2012)[/B]
 - Initial Release

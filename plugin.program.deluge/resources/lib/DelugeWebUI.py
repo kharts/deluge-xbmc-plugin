@@ -8,12 +8,13 @@ from DelugeWebUIJson import DelugeWebUIJson
 from TorrentInfo import TorrentInfo
 from Filter import Filter
 from FilterList import FilterList
+from TorrentList import TorrentList
 import json
 
 class DelugeWebUI(DelugeWebUIJson):
         
     def getTorrentList(self):
-        torrentList = []
+        torrentList = TorrentList()
         jsonRes = self.updateUi()
         jdata = json.loads(jsonRes)
         for torrentId in jdata['result']['torrents']:
@@ -33,7 +34,7 @@ class DelugeWebUI(DelugeWebUIJson):
     
     def getTorrentListByLabel(self, labelName):
         torrentInfoList = self.getTorrentList()
-        resultTorrentInfoList = []
+        resultTorrentInfoList = TorrentList()
         for torrentInfo in torrentInfoList:
             if torrentInfo.label == labelName:
                 resultTorrentInfoList.append(torrentInfo)
@@ -41,7 +42,7 @@ class DelugeWebUI(DelugeWebUIJson):
     
     def getTorrentListByState(self, stateName):
         torrentInfoList = self.getTorrentList()
-        resultTorrentInfoList = []
+        resultTorrentInfoList = TorrentList()
         for torrentInfo in torrentInfoList:
             if torrentInfo.state == stateName:
                 resultTorrentInfoList.append(torrentInfo)
@@ -57,8 +58,20 @@ class DelugeWebUI(DelugeWebUIJson):
         states = FilterList()
         for torrent in torrentList:
             states.append(Filter(torrent.state, 1))
+        
+        finishedCount = torrentList.finishedCount()
+        if finishedCount > 0:
+            states.append(Filter('Finished', finishedCount))
+        
+        unfinishedCount = torrentList.unfinishedCount()
+        if unfinishedCount > 0:
+            states.append(Filter('Unfinished', unfinishedCount))
+        
+        unstartedCount = torrentList.unfinishedCount()
+        if unstartedCount > 0:
+            states.append(Filter('Unstarted', unstartedCount))
+        
         return states
-                
 
     def getFilters(self,filterType):
         jsonRes = self.updateUi()
