@@ -22,7 +22,7 @@ class DelugeWebUI(DelugeWebUIJson):
             jsonTorrentInfo = jdata['result']['torrents'][torrentId]
             torrentInfo.torrentId = torrentId
             torrentInfo.state = jsonTorrentInfo['state']
-            torrentInfo.name = jsonTorrentInfo['name']
+            torrentInfo.name = jsonTorrentInfo['name'].encode('utf8')
             torrentInfo.progress = int(jsonTorrentInfo['progress'])
             torrentInfo.totalSize = int(jsonTorrentInfo['total_size'])
             torrentInfo.uploadPayloadRate = round(float(jsonTorrentInfo['upload_payload_rate']) / (1024), 2)
