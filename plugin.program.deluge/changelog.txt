@@ -1,5 +1,5 @@
 [B]Version 0.4.9 (03.05.2012)[/B]
-- Fixed UTF-8 problem, now plugin will not faill whith Romanian language.
+- Fixed UTF-8 problem, now plugin should not faill whith Romanian language.
 
 [B]Version 0.4.8 (27.04.2012)[/B]
 - Improvement of grouping by state in label folders - now are also present Finished, Unfinished and Unstarted states.
