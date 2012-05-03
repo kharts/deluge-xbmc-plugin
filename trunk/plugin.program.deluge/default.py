@@ -6,9 +6,9 @@ __addonname__ = "DelugeXBMCPlugin"
 __addonid__   = "plugin.program.deluge"
 __addon__     = xbmcaddon.Addon(id=__addonid__)
 __language__  = __addon__.getLocalizedString
-__cwd__       = xbmc.translatePath( __addon__.getAddonInfo('path') )
-__profile__   = xbmc.translatePath( __addon__.getAddonInfo('profile') )
-__icondir__   = os.path.join( __cwd__,'resources','icons' )
+__cwd__       = xbmc.translatePath( __addon__.getAddonInfo('path') ).decode('utf-8')
+__profile__   = xbmc.translatePath( __addon__.getAddonInfo('profile') ).decode('utf-8')
+__icondir__   = os.path.join( __cwd__, 'resources', 'icons' )
 
 # Shared resources 
 BASE_RESOURCE_PATH = os.path.join( __cwd__, 'resources', 'lib' )
@@ -25,21 +25,22 @@ from utilities import *
 import json
 from DelugeWebUI import DelugeWebUI
 from Filter import Filter
+from States import States
 
 webUI = DelugeWebUI(url)
 	
-def isTorrentListable(torrentInfo, stateName):
-	if torrentInfo.state == stateName:
+def isTorrentListable(torrent, stateName):
+	if torrent.state == stateName:
 		return True
-	if stateName == 'All':
+	if stateName == States.All:
 		return True
-	#if stateName == 'Active' and (torrentInfo.state == 'Downloading' or torrentInfo.state == 'Seeding'):
-	#	return True
-	if stateName == 'Finished' and torrentInfo.process == 100:
+	if stateName == States.Finished and torrent.progress == 100:
 		return True
-	if stateName == 'Unfinished' and torrentInfo.process > 0 and torrentInfo.process > 100 :
+	if stateName == States.Unfinished and torrent.progress > 0 and torrent.progress < 100:
 		return True
-	if stateName == 'Unstarted' and torrentInfo.process == 0:
+	if stateName == States.Unstarted and torrent.progress == 0:
+		return True
+	if stateName == States.Active and (torrent.state == States.Downloading or torrent.state == States.Seeding):
 		return True
 	return False
 
@@ -48,23 +49,24 @@ def listTorrents(torrentList, stateName):
 	mode = 1
 	for torrentInfo in torrentList:
 		if isTorrentListable(torrentInfo, stateName):
-			if torrentInfo.state == 'Paused':
-				thumb = os.path.join(__icondir__,'pause.png')
-			elif torrentInfo.state == 'Downloading':
-				thumb = os.path.join(__icondir__,'play.png')
-			elif torrentInfo.state == 'Queued':
-				thumb = os.path.join(__icondir__,'queued.png')
+			if torrentInfo.state == States.Paused:
+				thumb = os.path.join(__icondir__, 'pause.png')
+			elif torrentInfo.state == States.Downloading:
+				thumb = os.path.join(__icondir__, 'play.png')
+			elif torrentInfo.state == States.Queued:
+				thumb = os.path.join(__icondir__, 'queued.png')
 			else:
-				thumb = os.path.join(__icondir__,'unknown.png')
+				thumb = os.path.join(__icondir__, 'unknown.png')
 			url = baseurl
-			addTorrent(torrentInfo.name+" "+__language__(30001)+str(torrentInfo.progress)+"% "+__language__(30002)+torrentInfo.getStrSize()+" "+__language__(30003)+ str(torrentInfo.downloadPayloadRate)+"Kb/s "+__language__(30004)+str(torrentInfo.uploadPayloadRate)+"Kb/s "+__language__(30005)+torrentInfo.getStrEta(), url, mode, thumb, torrentInfo.torrentId)
+			addTorrent(torrentInfo.name + " " + getTranslation(30001) + str(torrentInfo.progress)+"% "+getTranslation(30002) + torrentInfo.getStrSize() + " " + getTranslation(30003) + str(torrentInfo.downloadPayloadRate) + "Kb/s " + getTranslation(30004) + str(torrentInfo.uploadPayloadRate)+"Kb/s " + getTranslation(30005) + torrentInfo.getStrEta(), url, mode, thumb, torrentInfo.torrentId)
 			mode = mode + 1
+	#xbmc.executebuiltin('Container.SetViewMode(500)') # 55 - List; 
 	xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=False)
 
 def performAction(selection):
 	restoreSession()
 	dialog = xbmcgui.Dialog()
-	sel = dialog.select(__language__(32001),[__language__(32011),__language__(32012),__language__(32002),__language__(32003),__language__(32007),__language__(32008),__language__(32019)])
+	sel = dialog.select(getTranslation(32001), [getTranslation(32011), getTranslation(32012), getTranslation(32002), getTranslation(32003), getTranslation(32007), getTranslation(32008), getTranslation(32019)])
 	if sel == 0:
 		webUI.pauseAllTorrents()
 	if sel == 1:
@@ -79,7 +81,7 @@ def performAction(selection):
 		webUI.removeTorrent(selection, True)
 	if sel == 6:
 		labels = webUI.getLabels()
-		labelDialog = dialog.select(__language__(32020), labels)
+		labelDialog = dialog.select(getTranslation(32020), labels)
 		webUI.labelSetTorrent(selection, labels[labelDialog])
 	xbmc.executebuiltin('Container.Refresh')
 
@@ -91,7 +93,7 @@ def restoreSession():
 					webUI.connectToFirstHost()
 	except urllib2.URLError:
 		dialog = xbmcgui.Dialog()
-		ret = dialog.yesno(__addonname__ + ' ' + __language__(32100).encode('utf8'), __language__(32101).encode('utf8'), __language__(32102).encode('utf8'))
+		ret = dialog.yesno(__addonname__ + ' ' + getTranslation(32100), getTranslation(32101), getTranslation(32102))
 		if ret == True:
 			__addon__.openSettings()
 		sys.exit()
@@ -124,29 +126,32 @@ def get_params():
 
     return param
 
+def getTranslation(translationId):
+    return __language__(translationId).encode('utf8')
+
 def addTorrent(name, url, mode, iconimage, hashNum):
     u = sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&hashNum="+str(hashNum)
     ok = True
     point = xbmcgui.ListItem(name,thumbnailImage=iconimage)
     rp = "XBMC.RunPlugin(%s?mode=%s)"
-    point.addContextMenuItems([(__language__(32011), rp % (sys.argv[0], 1000)), (__language__(32012), rp % (sys.argv[0], 1001))], replaceItems=True)
+    point.addContextMenuItems([(getTranslation(32011), rp % (sys.argv[0], 1000)), (getTranslation(32012), rp % (sys.argv[0], 1001))], replaceItems=True)
     ok = xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=point,isFolder=False)
 	
 def addFilters(filter, mode, label):
 	iconimage = ''
 	if filter.name == '':
-		displayName = __language__(30009) + '(' + str(filter.count) + ')'
+		displayName = getTranslation(30009) + '(' + str(filter.count) + ')'
 	else:
 		displayName = str(filter)
 	u = sys.argv[0] + "?url=&mode=" + str(mode) + "&filterName=" + urllib.quote_plus(filter.name) + "&filterCount=" + str(filter.count)
 	if label:
 		u = u + "&labelName=" + urllib.quote_plus(label.name) + "&labelCount=" + str(label.count)
-	ok=True
-	liz=xbmcgui.ListItem(displayName, iconImage="DefaultFolder.png",thumbnailImage=iconimage)
-	liz.setInfo( type="Video", infoLabels={ "Title": displayName })
+	ok = True
+	liz = xbmcgui.ListItem(displayName, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+	liz.setInfo( type="Video", infoLabels = {"Title": displayName} )
 	rp = "XBMC.RunPlugin(%s?mode=%s)"
-	liz.addContextMenuItems([(__language__(32011), rp % (sys.argv[0], 1000)),(__language__(32012), rp % (sys.argv[0], 1001))],replaceItems=True)
-	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+	liz.addContextMenuItems([(getTranslation(32011), rp % (sys.argv[0], 1000)), (getTranslation(32012), rp % (sys.argv[0], 1001))], replaceItems=True)
+	ok = xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz, isFolder=True)
 
 def addStateFilters(states, label):
 	for state in states:
@@ -163,7 +168,43 @@ def listFilters():
 			addFilters(label, 5005, label)
 	
 	xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=False)
+	
+def getParams():
+	global url, name, mode, hashNum, filterName, filterCount, labelName, labelCount
+	try:
+		url = urllib.unquote_plus(params['url'])
+	except:
+		pass
+	try:
+		name = urllib.unquote_plus(params['name'])
+	except:
+		pass
+	try:
+		mode = int(params['mode'])
+	except:
+		pass
+	try:
+		hashNum = urllib.unquote_plus(params['hashNum'])
+	except:
+		pass
+	try:
+		filterName = urllib.unquote_plus(params['filterName'])
+	except:
+		pass
+	try:
+		filterCount = int(urllib.unquote_plus(params['filterCount']))
+	except:
+		pass
+	try:
+		labelName = urllib.unquote_plus(params['labelName'])
+	except:
+		labelName = ''
+	try:
+		labelCount = int(urllib.unquote_plus(params['labelCount']))
+	except:
+		labelCount = 0
 
+xbmc.log( '------------------------------------Started---', xbmc.LOGINFO )
 
 params = get_params()
 url = None
@@ -171,38 +212,7 @@ name = None
 mode = 0
 hashNum = None
 
-try:
-    url = urllib.unquote_plus(params['url'])
-except:
-    pass
-try:
-    name = urllib.unquote_plus(params['name'])
-except:
-    pass
-try:
-    mode = int(params['mode'])
-except:
-    pass
-try:
-    hashNum = urllib.unquote_plus(params['hashNum'])
-except:
-    pass
-try:
-    filterName = urllib.unquote_plus(params['filterName'])
-except:
-    pass
-try:
-    filterCount = int(urllib.unquote_plus(params['filterCount']))
-except:
-	pass
-try:
-    labelName = urllib.unquote_plus(params['labelName'])
-except:
-	labelName = ''
-try:
-    labelCount = int(urllib.unquote_plus(params['labelCount']))
-except:
-	labelCount = 0
+getParams()
 	
 if mode == 0:
     listFilters()
@@ -239,3 +249,4 @@ elif mode == 1004:
 elif 0 < mode < 1000:
     performAction(hashNum)
 
+#TODO: To change mode from int to string. To add a enum class for mode.

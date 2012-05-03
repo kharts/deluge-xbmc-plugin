@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <strings>
 	<!-- Labels -->
 	<string id="30001">Done:</string>
@@ -23,7 +23,6 @@
 	<string id="32019">Set Label</string>
 	<!-- dialog.select.label -->
 	<string id="32020">Select label:</string>
-
 	<!-- dialog.numeric -->
 	<string id="32009">Enter Max. Upload Speed:</string>
 	<string id="32010">Enter Max. Download Speed:</string>
