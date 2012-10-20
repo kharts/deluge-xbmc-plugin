@@ -14,13 +14,17 @@
 	<string id="30101">Port:</string>
 	<string id="30103">Parolă:</string>
 	<string id="30104">Cale torent:</string>
+	<string id="30105">Numărul minim de torente pentru gruparea după statut:</string>
+	<string id="30106">Confirmă ștergerea torentului:</string>
 	<!-- dialog.select -->
 	<string id="32001">Selectează funcție:</string>
 	<string id="32002">Pauză</string>
 	<string id="32003">Reluare</string>
 	<string id="32007">Șterge torent</string>
-	<string id="32008">Sterge torent și date</string>
+	<string id="32008">Șterge torent și date</string>
 	<string id="32019">Setează etichetă</string>
+	<string id="32021">Elimină torent</string>
+	<string id="32022">Vrei într-adevăr să elimini acest torrent?</string>
 	<!-- dialog.select.label -->
 	<string id="32020">Selectează etichetă:</string>
 	<!-- dialog.numeric -->

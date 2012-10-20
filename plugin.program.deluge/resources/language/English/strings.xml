@@ -14,6 +14,8 @@
 	<string id="30101">Port:</string>
 	<string id="30103">Password:</string>
 	<string id="30104">Torrent Path:</string>
+	<string id="30105">Minimum count of torrents to by grouped by status:</string>
+	<string id="30106">Confirma torrnet removing:</string>
 	<!-- dialog.select -->
 	<string id="32001">Perform function:</string>
 	<string id="32002">Pause</string>
@@ -21,6 +23,8 @@
 	<string id="32007">Remove</string>
 	<string id="32008">Remove torrent and data</string>
 	<string id="32019">Set Label</string>
+	<string id="32021">Remove Torrent</string>
+	<string id="32022">Do you really want to remove this torrent?</string>
 	<!-- dialog.select.label -->
 	<string id="32020">Select label:</string>
 	<!-- dialog.numeric -->
