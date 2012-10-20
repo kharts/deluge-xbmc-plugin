@@ -50,11 +50,11 @@ def listTorrents(torrentList, stateName):
 	for torrentInfo in torrentList:
 		if isTorrentListable(torrentInfo, stateName):
 			if torrentInfo.state == States.Paused:
-				thumb = os.path.join(__icondir__, 'pause.png')
+				thumb = os.path.join(__icondir__, 'deluge_pause.png')
 			elif torrentInfo.state == States.Downloading:
-				thumb = os.path.join(__icondir__, 'play.png')
+				thumb = os.path.join(__icondir__, 'deluge_downloading.png')
 			elif torrentInfo.state == States.Queued:
-				thumb = os.path.join(__icondir__, 'queued.png')
+				thumb = os.path.join(__icondir__, 'deluge_seeding.png')
 			else:
 				thumb = os.path.join(__icondir__, 'unknown.png')
 			url = baseurl
@@ -66,24 +66,32 @@ def listTorrents(torrentList, stateName):
 def performAction(selection):
 	restoreSession()
 	dialog = xbmcgui.Dialog()
-	sel = dialog.select(getTranslation(32001), [getTranslation(32011), getTranslation(32012), getTranslation(32002), getTranslation(32003), getTranslation(32007), getTranslation(32008), getTranslation(32019)])
-	if sel == 0:
+	selectedAction = dialog.select(getTranslation(32001), [getTranslation(32011), getTranslation(32012), getTranslation(32002), getTranslation(32003), getTranslation(32007), getTranslation(32008), getTranslation(32019)])
+	if selectedAction == 0:
 		webUI.pauseAllTorrents()
-	if sel == 1:
+	if selectedAction == 1:
 		webUI.resumeAllTorrents()
-	if sel == 2:
+	if selectedAction == 2:
 		webUI.pauseTorrent(selection)
-	if sel == 3:
+	if selectedAction == 3:
 		webUI.resumeTorrent(selection)
-	if sel == 4:
-		webUI.removeTorrent(selection, True)
-	if sel == 5:
-		webUI.removeTorrent(selection, True)
-	if sel == 6:
+	if selectedAction == 4:
+		removeTorrent(selection, False)
+	if selectedAction == 5:
+		removeTorrent(selection, True)
+	if selectedAction == 6:
 		labels = webUI.getLabels()
-		labelDialog = dialog.select(getTranslation(32020), labels)
-		webUI.labelSetTorrent(selection, labels[labelDialog])
+		labelDialog = xbmcgui.Dialog()
+		selectedLabel = labelDialog.select(getTranslation(32020), labels)
+		if selectedLabel != -1:
+			webUI.labelSetTorrent(selection, labels[selectedLabel])
 	xbmc.executebuiltin('Container.Refresh')
+
+def removeTorrent(selection, removeData):
+	if __addon__.getSetting('confirmTorrentDeleting'):
+		dialog = xbmcgui.Dialog()
+		if dialog.yesno(getTranslation(32021), getTranslation(32022)):
+			webUI.removeTorrent(selection, False)
 
 def restoreSession():
 	try:
@@ -168,7 +176,7 @@ def listFilters():
 			addFilters(label, 5005, label)
 	
 	xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=False)
-	
+		
 def getParams():
 	global url, name, mode, hashNum, filterName, filterCount, labelName, labelCount
 	try:
@@ -204,7 +212,7 @@ def getParams():
 	except:
 		labelCount = 0
 
-xbmc.log( '------------------------------------Started---', xbmc.LOGINFO )
+xbmc.log( '-----------------------------------Deluge.Plugin-Started---', xbmc.LOGINFO )
 
 params = get_params()
 url = None
@@ -230,7 +238,10 @@ if mode == 5005:
 	torrents = webUI.getTorrentListByLabel(filterName)
 	states = webUI.getStateList(torrents)
 	label = Filter(labelName, labelCount)
-	addStateFilters(states, label)
+	if len(torrents) > int(__addon__.getSetting('torrentCountForStateGrouping')):
+		addStateFilters(states, label)
+	else:
+		listTorrents(torrents, States.All)
 	xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=False)
 	
 
@@ -240,8 +251,8 @@ elif mode == 1000:
 elif mode == 1001:
     resumeAll()
 
-elif mode == 1004:
-    limitSpeeds()
+#elif mode == 1004:
+#    limitSpeeds()
 
 #elif mode == 1005:
 #    addFiles()

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <settings>
-	<setting id="ip" type="text" label="30100" default="127.0.0.1" />
-	<setting id="port" type="text" label="30101" default="8112" />
+	<setting id="ip" type="ipaddress" label="30100" default="127.0.0.1" />
+	<setting id="port" type="number" label="30101" default="8112" />
 	<setting id="pwd" type="text" label="30103" default="deluge" />
+	<setting id="torrentCountForStateGrouping" type="number" label="30105" default="5" />
 	<setting id="tdir" type="folder" source="files" label="30104" default="special://profile/torrents/" />
+	<setting id="confirmTorrentDeleting" type="bool" label="30106" default="true" />
 </settings>
