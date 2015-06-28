@@ -114,8 +114,9 @@ class DelugeWebUIJson(object):
         jsonRes = self.sendReq('label.get_labels', [], self.getJsonId(), self.cookie)
         jdata = json.loads(jsonRes)
         labels = []
-        for label in jdata['result']:
-            labels.append(label)
+        if jdata['result']:
+            for label in jdata['result']:
+                labels.append(label)
         return labels
     
     #label.add

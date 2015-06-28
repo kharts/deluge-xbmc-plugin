@@ -28,7 +28,8 @@ class DelugeWebUI(DelugeWebUIJson):
             torrentInfo.uploadPayloadRate = round(float(jsonTorrentInfo['upload_payload_rate']) / (1024), 2)
             torrentInfo.downloadPayloadRate = round(float(jsonTorrentInfo['download_payload_rate']) / (1024), 2)
             torrentInfo.eta = int(jsonTorrentInfo['eta'])
-            torrentInfo.label = jsonTorrentInfo['label']
+            if 'label' in jsonTorrentInfo:
+                torrentInfo.label = jsonTorrentInfo['label']
             torrentList.append(torrentInfo)
         return torrentList
     
@@ -81,8 +82,9 @@ class DelugeWebUI(DelugeWebUIJson):
         jsonRes = self.updateUi()
         jdata = json.loads(jsonRes)
         filterList = []
-        for strFilter in jdata['result']['filters'][filterType]:
-            filterList.append(Filter(strFilter[0], int(strFilter[1])))
+        if filterType in jdata['result']['filters']:
+            for strFilter in jdata['result']['filters'][filterType]:
+                filterList.append(Filter(strFilter[0], int(strFilter[1])))
         return filterList
     
     def getStateFilters(self):
