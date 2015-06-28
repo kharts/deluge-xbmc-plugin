@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<strings>
+	<!-- Labels -->
+	<string id="30001">Выполнено:</string>
+	<string id="30002">Размер:</string>
+	<string id="30003">Загр.:</string>
+	<string id="30004">Разд.:</string>
+	<string id="30005">Осталось:</string>
+	<string id="30006">час.</string>
+	<string id="30007">мин.</string>
+	<string id="30009">Без метки</string>
+	<!-- Settings labels -->
+	<string id="30100">IP-адрес:</string>
+	<string id="30101">Порт:</string>
+	<string id="30103">Пароль:</string>
+	<string id="30104">Каталог торрентов:</string>
+	<string id="30105">Минимальное к-во торрентов, сгруппированных по статусу:</string>
+	<string id="30106">Подтверждать удаление торрентов:</string>
+	<!-- dialog.select -->
+	<string id="32001">Perform function:</string>
+	<string id="32002">Pause</string>
+	<string id="32003">Resume</string>
+	<string id="32007">Remove</string>
+	<string id="32008">Remove torrent and data</string>
+	<string id="32019">Set Label</string>
+	<string id="32021">Remove Torrent</string>
+	<string id="32022">Do you really want to remove this torrent?</string>
+	<!-- dialog.select.label -->
+	<string id="32020">Select label:</string>
+	<!-- dialog.numeric -->
+	<string id="32009">Enter Max. Upload Speed:</string>
+	<string id="32010">Enter Max. Download Speed:</string>
+	<!-- context.menu -->
+	<string id="32011">Pause All</string>
+	<string id="32012">Resume All</string>
+	<!-- error -->
+	<string id="32100">Error!</string>
+	<string id="32101">Fail to connect to daemon.</string>
+	<string id="32102">Do you want to change settings?</string>
+</strings>
