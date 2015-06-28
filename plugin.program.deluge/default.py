@@ -219,6 +219,7 @@ url = None
 name = None
 mode = 0
 hashNum = None
+filterName = None
 
 getParams()
 	
