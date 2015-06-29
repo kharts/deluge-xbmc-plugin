@@ -1,3 +1,10 @@
+[B]Version 0.5.1 (29.06.2015)[/B]
+- Updated for Kodi/XBMC v13+
+- Fixed errors:
+    - Add-on is not working if deluge-plugin 'Label' is switched off;
+    - Localization: non us-ascii translations is not working.
+- Added Russian and Ukrainian translation.
+
 [B]Version 0.4.9 (03.05.2012)[/B]
 - Fixed UTF-8 problem, now plugin should not faill whith Romanian language.
 
