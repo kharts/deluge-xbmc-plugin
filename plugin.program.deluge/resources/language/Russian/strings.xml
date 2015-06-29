@@ -28,7 +28,7 @@
 	<!-- dialog.select.label -->
 	<string id="32020">Выберите метку:</string>
 	<!-- dialog.numeric -->
-	<string id="32009">Вветиде макс. скорость раздачи:</string>
+	<string id="32009">Введите макс. скорость раздачи:</string>
 	<string id="32010">Введите макс. скорость загрузки:</string>
 	<!-- context.menu -->
 	<string id="32011">Приостановить все</string>
