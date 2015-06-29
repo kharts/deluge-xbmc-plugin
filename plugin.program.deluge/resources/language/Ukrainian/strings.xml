@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<strings>
+	<!-- Labels -->
+	<string id="30001">Виконано:</string>
+	<string id="30002">Розмір:</string>
+	<string id="30003">Завант.:</string>
+	<string id="30004">Розд.:</string>
+	<string id="30005">Залиш.:</string>
+	<string id="30006">год.</string>
+	<string id="30007">хв.</string>
+	<string id="30009">Без мітки</string>
+	<!-- Settings labels -->
+	<string id="30100">IP-адреса:</string>
+	<string id="30101">Порт:</string>
+	<string id="30103">Пароль:</string>
+	<string id="30104">Каталог торрентів:</string>
+	<string id="30105">Мінімальна к-ть торрентів, згрупованих по статусу:</string>
+	<string id="30106">Підтверджувати вилучення торрентів:</string>
+	<!-- dialog.select -->
+	<string id="32001">Виконати дію:</string>
+	<string id="32002">Пауза</string>
+	<string id="32003">Продовжити</string>
+	<string id="32007">Видалити</string>
+	<string id="32008">Видалити торрент і дані</string>
+	<string id="32019">Встановити мітку</string>
+	<string id="32021">Видалити торрент</string>
+	<string id="32022">Ви дійсно бажаєте видалити цей торрент?</string>
+	<!-- dialog.select.label -->
+	<string id="32020">Виберіть мітку:</string>
+	<!-- dialog.numeric -->
+	<string id="32009">Введіть макс. швидкість роздачі:</string>
+	<string id="32010">Введіть макс. швидкість завантаження:</string>
+	<!-- context.menu -->
+	<string id="32011">Призупинити все</string>
+	<string id="32012">Продовжити все</string>
+	<!-- error -->
+	<string id="32100">Помилка!</string>
+	<string id="32101">Не вдалось підключитись до демона.</string>
+	<string id="32102">Бажаєте відкрити налаштування?</string>
+</strings>
