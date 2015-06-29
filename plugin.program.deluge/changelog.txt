@@ -3,7 +3,7 @@
 - Fixed errors:
     - Add-on is not working if deluge-plugin 'Label' is switched off;
     - Torrent status 'Seeding' is not recognized.
-- Added Russian and Ukrainian translation.
+- Added Russian and Ukrainian translations.
 
 [B]Version 0.4.9 (03.05.2012)[/B]
 - Fixed UTF-8 problem, now plugin should not faill whith Romanian language.
