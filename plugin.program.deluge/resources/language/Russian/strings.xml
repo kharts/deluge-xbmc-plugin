@@ -17,24 +17,24 @@
 	<string id="30105">Минимальное к-во торрентов, сгруппированных по статусу:</string>
 	<string id="30106">Подтверждать удаление торрентов:</string>
 	<!-- dialog.select -->
-	<string id="32001">Perform function:</string>
-	<string id="32002">Pause</string>
-	<string id="32003">Resume</string>
-	<string id="32007">Remove</string>
-	<string id="32008">Remove torrent and data</string>
-	<string id="32019">Set Label</string>
-	<string id="32021">Remove Torrent</string>
-	<string id="32022">Do you really want to remove this torrent?</string>
+	<string id="32001">Выполнить действие:</string>
+	<string id="32002">Пауза</string>
+	<string id="32003">Продолжить</string>
+	<string id="32007">Удалить</string>
+	<string id="32008">Удалить торрент и данные</string>
+	<string id="32019">Установить метку</string>
+	<string id="32021">Удалить торрент</string>
+	<string id="32022">Вы действительно хотите удалить этот торрент?</string>
 	<!-- dialog.select.label -->
-	<string id="32020">Select label:</string>
+	<string id="32020">Выберите метку:</string>
 	<!-- dialog.numeric -->
-	<string id="32009">Enter Max. Upload Speed:</string>
-	<string id="32010">Enter Max. Download Speed:</string>
+	<string id="32009">Вветиде макс. скорость раздачи:</string>
+	<string id="32010">Введите макс. скорость загрузки:</string>
 	<!-- context.menu -->
-	<string id="32011">Pause All</string>
-	<string id="32012">Resume All</string>
+	<string id="32011">Приостановить все</string>
+	<string id="32012">Продолжить все</string>
 	<!-- error -->
-	<string id="32100">Error!</string>
-	<string id="32101">Fail to connect to daemon.</string>
-	<string id="32102">Do you want to change settings?</string>
+	<string id="32100">Ошибка!</string>
+	<string id="32101">Не удалось подключиться к демону.</string>
+	<string id="32102">Желаете открыть настройки?</string>
 </strings>
