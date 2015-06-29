@@ -15,9 +15,11 @@
         <summary lang="en">Deluge Control Plugin</summary>
         <summary lang="ru">Дополнение для управления Deluge</summary>
         <summary lang="uk">Додаток для керування Deluge</summary>
-		<description lang="ro">Gestionează clentul de torent Deluge din Kodi/XBMC![CR][CR]Instalarea:[CR]1. Instaleaza pluginul WebUI pentru Deluge[CR]2. Activeaza pluginul WebUI pentru Deluge[CR]2. Instaleaza pluginul Deluge Kodi/XBMC[CR]4. Introdu parola prin intermediul setarilor pluginului Kodi[CR]5. Bucurăte!</description>
-        <description lang="en">Manages your Deluge queue from within Kodi/XBMC![CR][CR]Install:[CR]1. Install WebUI plugin for Deluge[CR]2. Enable WebUI for Deluge[CR]2. Install Deluge Kodi/XBMC plug-in[CR]4. Enter password of Deluge via 'Plug-in Settings'[CR]5. Enjoy!</description>
-        <description lang="ru">Управляет вашей очередью Deluge из Kodi/XBMC![CR][CR]Установка:[CR]1. Установите плагин WebUI для Deluge[CR]2. Включите плагин WebUI для Deluge[CR]2. Установите дополнение Deluge Kodi/XBMC[CR]4. Введите пароль Deluge в 'Настройках дополнения'[CR]5. Наслаждайтесь!</description>
-        <description lang="uk">Керує вашою чергою Deluge з Kodi/XBMC![CR][CR]Встановлення:[CR]1. Встановіть додаток WebUI для Deluge[CR]2. Увімкніть додаток WebUI для Deluge[CR]2. Встановіть додаток Deluge Kodi/XBMC[CR]4. Введіть пароль Deluge в 'Налаштуваннях додатка'[CR]5. Насолоджуйтесь!</description>
+		<description lang="ro">Gestionează clentul de torent Deluge din Kodi/XBMC![CR][CR]Instalarea:[CR]1. Instaleaza pluginul WebUI pentru Deluge[CR]2. Activeaza pluginul WebUI pentru Deluge[CR]3. Instaleaza pluginul Deluge Kodi/XBMC[CR]4. Introdu parola prin intermediul setarilor pluginului Kodi[CR]5. Bucurăte!</description>
+        <description lang="en">Manages your Deluge queue from within Kodi/XBMC![CR][CR]Install:[CR]1. Install WebUI plugin for Deluge[CR]2. Enable WebUI for Deluge[CR]3. Install Deluge Kodi/XBMC plug-in[CR]4. Enter password of Deluge via 'Plug-in Settings'[CR]5. Enjoy!</description>
+        <description lang="ru">Управляет вашей очередью Deluge из Kodi/XBMC![CR][CR]Установка:[CR]1. Установите плагин WebUI для Deluge[CR]2. Включите плагин WebUI для Deluge[CR]3. Установите дополнение Deluge Kodi/XBMC[CR]4. Введите пароль Deluge в 'Настройках дополнения'[CR]5. Наслаждайтесь!</description>
+        <description lang="uk">Керує вашою чергою Deluge з Kodi/XBMC![CR][CR]Встановлення:[CR]1. Встановіть додаток WebUI для Deluge[CR]2. Увімкніть додаток WebUI для Deluge[CR]3. Встановіть додаток Deluge Kodi/XBMC[CR]4. Введіть пароль Deluge в 'Налаштуваннях додатка'[CR]5. Насолоджуйтесь!</description>
+        <website>https://github.com/kharts/deluge-xbmc-plugin</website>
+        <source>https://github.com/kharts/deluge-xbmc-plugin</source>
     </extension>
 </addon>
