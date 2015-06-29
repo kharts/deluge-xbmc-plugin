@@ -50,10 +50,12 @@ def listTorrents(torrentList, stateName):
 	for torrentInfo in torrentList:
 		if isTorrentListable(torrentInfo, stateName):
 			if torrentInfo.state == States.Paused:
-				thumb = os.path.join(__icondir__, 'deluge_pause.png')
+				thumb = os.path.join(__icondir__, 'deluge_paused.png')
 			elif torrentInfo.state == States.Downloading:
 				thumb = os.path.join(__icondir__, 'deluge_downloading.png')
 			elif torrentInfo.state == States.Queued:
+				thumb = os.path.join(__icondir__, 'deluge_queued.png')
+			elif torrentInfo.state == States.Seeding:
 				thumb = os.path.join(__icondir__, 'deluge_seeding.png')
 			else:
 				thumb = os.path.join(__icondir__, 'unknown.png')

@@ -7,7 +7,7 @@ class StatesEnum(object):
         self.Unstarted = 'Unstarted'
         self.Active = 'Active'
         self.Downloading = 'Downloading'
-        self.Seeding = 'Seeding',
+        self.Seeding = 'Seeding'
         self.Paused = 'Paused'
         self.Queued = 'Queued'
 
