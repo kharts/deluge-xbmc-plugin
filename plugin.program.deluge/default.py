@@ -9,6 +9,7 @@ __language__  = __addon__.getLocalizedString
 __cwd__       = xbmc.translatePath( __addon__.getAddonInfo('path') ).decode('utf-8')
 __profile__   = xbmc.translatePath( __addon__.getAddonInfo('profile') ).decode('utf-8')
 __icondir__   = os.path.join( __cwd__, 'resources', 'icons' )
+__addonicon__ = __addon__.getAddonInfo('icon')
 
 # Shared resources 
 BASE_RESOURCE_PATH = os.path.join( __cwd__, 'resources', 'lib' )
@@ -179,6 +180,12 @@ def listFilters():
 	
 	xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=False)
 		
+def addFiles(torrentUrl):
+	restoreSession()
+	torrentHash = webUI.addTorrent(torrentUrl)
+	xbmcgui.Dialog().notification(__addonname__, getTranslation(32030 if torrentHash else 32031), __addonicon__)
+	return torrentHash
+
 def getParams():
 	global url, name, mode, hashNum, filterName, filterCount, labelName, labelCount
 	try:
@@ -257,8 +264,8 @@ elif mode == 1001:
 #elif mode == 1004:
 #    limitSpeeds()
 
-#elif mode == 1005:
-#    addFiles()
+elif mode == 1005:
+    addFiles(url)
 
 elif 0 < mode < 1000:
     performAction(hashNum)

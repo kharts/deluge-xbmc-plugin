@@ -4,7 +4,7 @@ Created on Mar 29, 2012
 @author: Iulian Postaru
 '''
 
-import json, urllib2
+import json, urllib2, base64
 from utils import unGzip
 
 class DelugeWebUIJson(object):
@@ -104,6 +104,16 @@ class DelugeWebUIJson(object):
     def resumeTorrent(self, torrentId):
         return self.isResultOk(self.sendReq('core.resume_torrent', [[torrentId]], self.getJsonId(), self.cookie))
     
+    #{"method":"core.add_torrent_magnet","params":["magnet:?xt=urn:btih:5685bec720f34c15f538f0304e168db29292a418&dn=Spectre+2015+1080p+BluRay+x264+DTS-JYK&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969", {}],"id":2}
+    #{"method":"core.add_torrent_file","params":["", "<torrent_content>", {}],"id":2}
+    def addTorrent(self, torrentUrl):
+        if torrentUrl.startswith("magnet:"):
+            jsonRes = self.sendReq('core.add_torrent_magnet', [torrentUrl, {}], self.getJsonId(), self.cookie)
+        else:
+            metaInfo = base64.b64encode(urllib2.urlopen(torrentUrl).read())
+            jsonRes = self.sendReq('core.add_torrent_file', ["", metaInfo, {}], self.getJsonId(), self.cookie)
+        return self.isResultOk(jsonRes)
+
     #TODO: is not working, to find out the params which should be passed
     #{"method":"core.remove_torrent","params":["60d5d82328b4547511fdeac9bf4d0112daa0ce00", false],"id":2}
     #{"method":"core.remove_torrent","params":[["60d5d82328b4547511fdeac9bf4d0112daa0ce00"],false],"id":2}
