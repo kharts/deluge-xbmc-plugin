@@ -5,6 +5,7 @@ Created on Mar 29, 2012
 '''
 
 import json, urllib2
+from httplib import BadStatusLine
 from utils import unGzip
 
 class DelugeWebUIJson(object):
@@ -22,7 +23,12 @@ class DelugeWebUIJson(object):
         req = urllib2.Request(self.url, data, {'Content-Type': 'application/json'})
         if cookie is not None :
             req.add_header('cookie', cookie)
-        res = urllib2.urlopen(req)
+        try:
+            res = urllib2.urlopen(req)
+        except BadStatusLine as exc:
+            err_msg = ("Got a BadStatusLine error. Did you enable SSL in Deluge's WebUi plugin? "
+                       "SSL isn't implemented yet in Deluge Kodi/XBMC Plugin.", exc)
+            raise NotImplementedError(err_msg, exc)
         DelugeWebUIJson.cookie = res.headers.get('Set-Cookie')
         encoding = res.headers.getheader('Content-Encoding')
         content = res.read()
