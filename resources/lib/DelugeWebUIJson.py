@@ -29,7 +29,7 @@ class DelugeWebUIJson(object):
         res.close()
         if encoding == 'gzip' :
             return unGzip(content)
-        return None
+        return content
     
     def getJsonId(self):
         self.jsonid += 1
