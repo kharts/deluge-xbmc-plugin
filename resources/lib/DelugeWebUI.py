@@ -17,7 +17,7 @@ class DelugeWebUI(DelugeWebUIJson):
         torrentList = TorrentList()
         jsonRes = self.updateUi()
         jdata = json.loads(jsonRes)
-        for torrentId in jdata['result']['torrents']:
+        for torrentId in jdata.get('result', {}).get('torrents', ()):
             torrentInfo = TorrentInfo()
             jsonTorrentInfo = jdata['result']['torrents'][torrentId]
             torrentInfo.torrentId = torrentId
@@ -82,6 +82,8 @@ class DelugeWebUI(DelugeWebUIJson):
         jsonRes = self.updateUi()
         jdata = json.loads(jsonRes)
         filterList = []
+        if jdata.get('error') is not None:
+            raise ValueError(jdata)
         if filterType in jdata['result']['filters']:
             for strFilter in jdata['result']['filters'][filterType]:
                 filterList.append(Filter(strFilter[0], int(strFilter[1])))

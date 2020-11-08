@@ -33,6 +33,9 @@
 	<!-- context.menu -->
 	<string id="32011">Pause All</string>
 	<string id="32012">Resume All</string>
+	<!-- notification -->
+	<string id="32030">Torrent added !</string>
+	<string id="32031">Failed to add torrent.</string>
 	<!-- error -->
 	<string id="32100">Error!</string>
 	<string id="32101">Fail to connect to daemon.</string>
