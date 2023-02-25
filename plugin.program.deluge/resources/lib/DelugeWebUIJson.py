@@ -20,6 +20,7 @@ class DelugeWebUIJson(object):
         json_dict = {'method':methodName,'params':params,'id':jsonid}
         data = json.dumps(json_dict)
         req = urllib2.Request(self.url, data, {'Content-Type': 'application/json'})
+        req.add_header('Accept-encoding', 'gzip')
         if cookie is not None :
             req.add_header('cookie', cookie)
         res = urllib2.urlopen(req)
